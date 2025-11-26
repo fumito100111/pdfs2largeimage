@@ -30,6 +30,6 @@ def pdfs_to_large_image(row: int, column: int, *pdf_paths: list[str], dpi: int =
         save_dir.mkdir(parents=True, exist_ok=True)
         large_image.save(save_pdf_path, 'PDF')
         if compression:
-            with pikepdf.open(save_pdf_path) as pdf:
-                pdf.save(save_pdf_path, compression=pikepdf.CompressionLevel.default)
+            with pikepdf.open(save_pdf_path, allow_overwriting_input=True) as pdf:
+                pdf.save(save_pdf_path)
     return large_image
