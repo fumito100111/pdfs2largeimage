@@ -41,8 +41,7 @@ large_image: Image.Image = pdfs_to_large_image(
     column=column,               # 列数
     *pdf_paths,                  # 合成するPDFファイルのパスリスト (要素数: 行数 x 列数)
     dpi=dpi,                     # 画像の解像度 (デフォルト: 200)
-    save_pdf_path=save_pdf_path, # 生成した画像の保存先PDFファイルパス  (保存しない場合は None (デフォルト: None))
-    compression=True             # PDF圧縮の有無 (デフォルト: True)
+    save_pdf_path=save_pdf_path  # 生成した画像の保存先PDFファイルパス  (保存しない場合は None (デフォルト: None))
 )
 
 # 生成した画像は以下のような順番で並びます
