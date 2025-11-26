@@ -37,11 +37,12 @@ dpi: int = 200  # 画像の解像度
 save_pdf_path: str = './output/large_image.pdf' # 保存先のPDFファイルパス
 
 large_image: Image.Image = pdfs_to_large_image(
-    row=row,                    # 行数
-    column=column,              # 列数
-    *pdf_paths,                 # 合成するPDFファイルのパスリスト (要素数: 行数 x 列数)
-    dpi=dpi,                    # 画像の解像度 (デフォルト: 200)
-    save_pdf_path=save_pdf_path # 生成した画像の保存先PDFファイルパス  (保存しない場合は None (デフォルト: None))
+    row=row,                     # 行数
+    column=column,               # 列数
+    *pdf_paths,                  # 合成するPDFファイルのパスリスト (要素数: 行数 x 列数)
+    dpi=dpi,                     # 画像の解像度 (デフォルト: 200)
+    save_pdf_path=save_pdf_path, # 生成した画像の保存先PDFファイルパス  (保存しない場合は None (デフォルト: None))
+    compression=True             # PDF圧縮の有無 (デフォルト: True)
 )
 
 # 生成した画像は以下のような順番で並びます
