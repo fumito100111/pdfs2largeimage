@@ -2,7 +2,6 @@ from __future__ import annotations
 import pathlib
 from PIL import Image
 import pdf2image
-import pikepdf
 
 def pdf_to_images(*pdf_paths: list[str], dpi: int = 200) -> list[Image.Image]:
     images: list[Image.Image] = list[Image.Image]()
@@ -22,14 +21,11 @@ def images_to_large_image(row: int, column: int, *images: list[Image.Image]) -> 
         large_image.paste(image, (x, y))
     return large_image
 
-def pdfs_to_large_image(row: int, column: int, *pdf_paths: list[str], dpi: int = 200, save_pdf_path: str | None = None, compression: bool = True) -> Image.Image:
+def pdfs_to_large_image(row: int, column: int, *pdf_paths: list[str], dpi: int = 200, save_pdf_path: str | None = None) -> Image.Image:
     images: list[Image.Image] = pdf_to_images(*pdf_paths, dpi=dpi)
     large_image: Image.Image = images_to_large_image(row, column, *images)
     if save_pdf_path is not None:
         save_dir: pathlib.Path = pathlib.Path(save_pdf_path).parent
         save_dir.mkdir(parents=True, exist_ok=True)
         large_image.save(save_pdf_path, 'PDF')
-        if compression:
-            with pikepdf.open(save_pdf_path, allow_overwriting_input=True) as pdf:
-                pdf.save(save_pdf_path)
     return large_image
